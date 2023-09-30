@@ -95,17 +95,6 @@ print("Coefficient (exposure):", model.coef_[0])
 print("Coefficient (gain):", model.coef_[1])
 print("Intercept:", model.intercept_)
 
-# Plot the graph
-plt.figure(figsize=(10, 6))
-plt.scatter(exposure_gain[:, 0], pixel_values, label='Data', color='blue', marker='o')
-plt.plot(exposure_gain[:, 0], predicted_pixel_values, label='Linear Regression', color='red')
-plt.xlabel('Exposure Time')
-plt.ylabel('Pixel Values')
-plt.title('Linear Regression for Pixel Values')
-plt.legend()
-plt.grid(True)
-plt.show()
- 
 
 
 
