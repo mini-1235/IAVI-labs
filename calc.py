@@ -15,14 +15,14 @@ for file in os.listdir(dir):
     img.load()
     data = np.asarray(img, dtype="int32")
     #compute the sum of the pixels
-    data.sum()
-    #compute the average of the pixels
-    data.mean()
-    #write filename and average to file
-    #open the file
-    #write the filename and average to the file
+    data_sum = data.sum()
+    data_mean = data_sum / (data.shape[0] * data.shape[1])
+    mse = ((data-data_mean)**2).mean()
     output.write(str(file) + " ")
-    output.write(str(data.mean()))
+    output.write(str(data.mean())+ " ")
+    output.write(str(data.std())+ " ")
+    output.write(str(data.var())+ " ")
+    output.write(str(mse)+ " ")
     output.write("\n")
 output.close()
 
