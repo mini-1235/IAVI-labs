@@ -56,6 +56,8 @@ r_mean = np.array(r_mean)
 g_mean = np.array(g_mean)
 b_mean = np.array(b_mean)
 
+print((r_mean + g_mean + b_mean)/3)
+
 # use sklearn to fit the data
 def Value_LinearRegression(x, y, order):
     X = []
