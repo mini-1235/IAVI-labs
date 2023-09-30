@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
 
 # Given data
 data = '''
@@ -82,8 +83,7 @@ for line in lines:
 # Convert lists to NumPy arrays
 exposure_gain = np.array(exposure_gain)
 pixel_values = np.array(pixel_values)
-print(exposure_gain)
-print(pixel_values)
+
 # Create a linear regression model
 model = LinearRegression()
 
@@ -94,3 +94,19 @@ model.fit(exposure_gain, pixel_values)
 print("Coefficient (exposure):", model.coef_[0])
 print("Coefficient (gain):", model.coef_[1])
 print("Intercept:", model.intercept_)
+
+# Plot the graph
+plt.figure(figsize=(10, 6))
+plt.scatter(exposure_gain[:, 0], pixel_values, label='Data', color='blue', marker='o')
+plt.plot(exposure_gain[:, 0], predicted_pixel_values, label='Linear Regression', color='red')
+plt.xlabel('Exposure Time')
+plt.ylabel('Pixel Values')
+plt.title('Linear Regression for Pixel Values')
+plt.legend()
+plt.grid(True)
+plt.show()
+ 
+
+
+
+
