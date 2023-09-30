@@ -151,7 +151,7 @@ print(gray_mean)
 # use sklearn to fit the data
 y = gray_mean.T
 x = np.array([1, 2, 3, 4, 5, 6])
-order = 4
+order = 3
 W, y_hat = Value_LinearRegression(x, y, order)
 
 # draw the curve
@@ -166,7 +166,7 @@ b = 1
 for i in range(50):
     x2.append(b)
     b += 5/49
-    y_hat2.append(W[0] + W[1]*b + W[2]*b*b + W[3]*b*b*b + W[4]*b*b*b*b)
+    y_hat2.append(W[0] + W[1]*b + W[2]*b*b + W[3]*b*b*b)
 plt.plot(x2, y_hat2, c="gray")
 plt.show()
 
@@ -426,7 +426,7 @@ b_mean = np.array(b_mean)
 
 x = np.array([1, 2, 3, 4, 5, 6])
 y = []
-order = 4
+order = 3
 for i in range(9):
     y.append(r_mean[:, i])
 
@@ -453,7 +453,7 @@ for i in range(9):
     for j in range(50):
         x2.append(b)
         b += 5 / 49
-        y_hat2.append(W[i][0] + W[i][1]*b + W[i][2]*b*b + W[i][3]*b*b*b + W[i][4]*b*b*b*b)
+        y_hat2.append(W[i][0] + W[i][1]*b + W[i][2]*b*b + W[i][3]*b*b*b)
 
     plt.plot(x2, y_hat2, c="r")
 plt.show()
@@ -467,7 +467,7 @@ gray_mean = np.array(gray_mean)
 
 x = np.array([1, 2, 3, 4, 5, 6])
 y = []
-order = 4
+order = 3
 
 for i in range(9):
     y.append(gray_mean[:, i])
@@ -496,7 +496,7 @@ for i in range(9):
     for j in range(50):
         x2.append(b)
         b += 5 / 49
-        y_hat2.append(W[i][0] + W[i][1]*b + W[i][2]*b*b + W[i][3]*b*b*b + W[i][4]*b*b*b*b)
+        y_hat2.append(W[i][0] + W[i][1]*b + W[i][2]*b*b + W[i][3]*b*b*b)
 
     plt.plot(x2, y_hat2, c="gray")
 plt.show()
@@ -518,7 +518,7 @@ v_mean = np.array(v_mean)
 
 x = np.array([1, 2, 3, 4, 5, 6])
 y = []
-order = 4
+order = 3
 
 for i in range(9):
     y.append(s_mean[:, i])
@@ -547,7 +547,7 @@ for i in range(9):
     for j in range(50):
         x2.append(b)
         b += 5 / 49
-        y_hat2.append(W[i][0] + W[i][1]*b + W[i][2]*b*b + W[i][3]*b*b*b + W[i][4]*b*b*b*b)
+        y_hat2.append(W[i][0] + W[i][1]*b + W[i][2]*b*b + W[i][3]*b*b*b)
 
     plt.plot(x2, y_hat2, c="g")
 plt.show()
@@ -555,7 +555,7 @@ plt.show()
 # V channel
 x = np.array([1, 2, 3, 4, 5, 6])
 y = []
-order = 4
+order = 3
 
 for i in range(9):
     y.append(v_mean[:, i])
@@ -584,7 +584,7 @@ for i in range(9):
     for j in range(50):
         x2.append(b)
         b += 5 / 49
-        y_hat2.append(W[i][0] + W[i][1]*b + W[i][2]*b*b + W[i][3]*b*b*b + W[i][4]*b*b*b*b)
+        y_hat2.append(W[i][0] + W[i][1]*b + W[i][2]*b*b + W[i][3]*b*b*b)
 
     plt.plot(x2, y_hat2, c="b")
 plt.show()
