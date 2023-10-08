@@ -1,0 +1,1 @@
+for i in {1..30}; do python3 calibrate.py $i > $i.txt; done
