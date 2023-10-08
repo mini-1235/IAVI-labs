@@ -63,15 +63,11 @@ print("\n\n------Distortion Coefficient:------\n")
 json_dist = json.dumps(dist.tolist())
 print(json_dist)
 print("\n\n------Rotation Matrix:------\n")
-for rvec in rvecs:
-    rotation_matrix, _ = cv2.Rodrigues(rvec)
-    print(rotation_matrix)
+print(rvecs)
 print("\n\n------Translation Vector:------\n")
-for tvec in tvecs:
-    tranlsation_matrix,_ =  cv2.Rodrigues(tvec)
-    print(tranlsation_matrix)
+print(tvecs)
 
-image_before_undistort = cv2.imread('dataset/lab3/IMG_20231008_163510.jpg')
+image_before_undistort = cv2.imread('dataset/lab3/IMG_20231008_144324.jpg')
 h, w = image_before_undistort.shape[:2]
 new_camera_matrix, roi = cv2.getOptimalNewCameraMatrix(mtx, dist, (w, h), 1, (w, h))
 image_after_undistort = cv2.undistort(image_before_undistort, mtx, dist, None, new_camera_matrix)
