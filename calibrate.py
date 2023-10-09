@@ -71,7 +71,11 @@ image_before_undistort = cv2.imread('dataset/lab3/IMG_20231008_144324.jpg')
 h, w = image_before_undistort.shape[:2]
 new_camera_matrix, roi = cv2.getOptimalNewCameraMatrix(mtx, dist, (w, h), 1, (w, h))
 image_after_undistort = cv2.undistort(image_before_undistort, mtx, dist, None, new_camera_matrix)
-
+(rvecs, tvecs, inliers) = cv2.solvePnPRansac(object_points[0], image_points[0], mtx, dist)
+# print(cv2.solvePnPRansac(object_points[0], image_points[0], mtx, dist))
+print(rvecs)
+print(tvecs)
+print(inliers)
 x, y, w, h = roi
 image_after_undistort = image_after_undistort[y:y + h, x:x + w]
 cv2.imwrite('result.jpg', image_after_undistort)
