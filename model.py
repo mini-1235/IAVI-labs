@@ -22,14 +22,14 @@ points = np.array(points)
 points[:, 1], points[:, 2] = points[:, 2], -points[:, 1]
 
 # 将点的坐标放大
-points = points * 500 // 21.2
+points = points * 500 / 21.2
 
 # 将点沿X轴正向平移50
-points[:, 0] += 60 // 21.2
+points[:, 0] += 60 / 21.2
 # 将点沿Y轴正向平移70
-points[:, 1] += 70 // 21.2
+points[:, 1] += 70 / 21.2
 # 将点沿Z轴正向平移10
-points[:, 2] += 10 // 21.2
+points[:, 2] += 10 / 21.2
 
 # 输出坐标变换后的.ply文件
 with open('./model.ply', 'w') as f:
