@@ -22,6 +22,21 @@ width = int(camera.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(camera.get(cv2.CAP_PROP_FRAME_HEIGHT))
 cv2.namedWindow("Calibration")
 
+# Read the model
+with open('./model.ply', 'r') as f:
+    lines = f.readlines()
+
+for i, line in enumerate(lines):
+    if line.startswith('element vertex'):
+        num_points = int(line.split()[2])
+        start_line = i + 5
+        break
+
+points = []
+for i in range(start_line, start_line + num_points):
+    x, y, z = map(float, lines[i].split()[:3])
+    points.append([x, y, z])
+points = np.array(points)
 
 while True:    
     # Read from camera and display on windows
@@ -52,9 +67,9 @@ while True:
             imgAugmnt = cv2.drawChessboardCorners(img, (Grid_Point_Row,Grid_Point_Col), corners2,ret)
             cv2.imshow('Calibration',imgAugmnt) 
             cv2.waitKey(500)        
-                     
-    elif k%256 == 99:
-                   
+
+    # C pressed to compute calibration             
+    elif k%256 == 99: 
         ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(object_points, image_points, (width,height),None,None)
         
         if not ret:
@@ -77,10 +92,14 @@ while True:
             data={"camera_matrix": mtx.tolist(), "dist_coeff": dist.tolist()}
             with open(result_file, "w") as f:
                 yaml.dump(data, f, default_flow_style=False)
-                
-        
-            
-        
-        
-        
-        
+
+    # S pressed to project the model on image
+    elif k%256 == 115:
+        imgpoints, _ = cv2.projectPoints(points, rvecs[i], tvecs[i], mtx, dist)
+        for i in range(len(imgpoints)):
+            x, y = imgpoints[i][0]
+            x, y = int(x), int(y)
+            cv2.circle(img, (x, y), 1, (0, 0, 255), -1)
+        print("Projecting model on image...")
+        cv2.imshow('Calibration', img)
+        cv2.waitKey(500)

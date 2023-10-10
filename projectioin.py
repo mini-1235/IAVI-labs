@@ -83,8 +83,6 @@ dst = dst[y:y+h, x:x+w]
 cv2.imwrite('./undistorted.jpg', dst)
 
 # 将棋盘与相机中心输出在.ply文件中
-square_size = 21.2  # 棋盘格方块大小，单位为毫米
-
 # 计算不同照片中的相机中心
 C = []
 for i in range(cnt):
@@ -127,6 +125,7 @@ with open('output.ply', 'w') as f:
                 f.write('4 %d %d %d %d\n' % (i + j*CHECKERBOARD[0], i+1 + j*CHECKERBOARD[0], i+1 + (j+1)*CHECKERBOARD[0], i + (j+1)*CHECKERBOARD[0]))
 print('输出完成')
 
+# 投射模型到图片中
 # 读取需要投射的模型文件
 with open('./model.ply', 'r') as f:
     lines = f.readlines()
